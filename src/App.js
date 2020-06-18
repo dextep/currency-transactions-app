@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
 import './App.css';
+import CurrencyContainer from './app/components/CurrencyContainer'
+import TransactionContainer from "./app/components/TransactionContainer";
+import InputContainer from "./app/components/InputContainer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// store.dispatch(rateActions.reset())
+// store.dispatch(transactionActions.add({ name: "Transaction example2", value: 207 }))
+
+class App extends Component {
+  render() {
+    return (
+        <div className="App">
+            <CurrencyContainer />
+            <InputContainer />
+            <TransactionContainer />
+        </div>
+    );
+  }
 }
-
 export default App;
