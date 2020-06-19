@@ -1,9 +1,16 @@
 import actions from './actions'
 
-const add = payload => ({
-    type: actions.ADD_TRANSACTION, payload
+const addTransaction = payload => ({
+    type: actions.ADD_TRANSACTION,
+    payload
+})
+
+const removeTransaction = index => ({
+    type: actions.REMOVE_TRANSACTION,
+    index
 })
 
 export default {
-    add,
+    addTransaction,
+    removeTransaction
 }

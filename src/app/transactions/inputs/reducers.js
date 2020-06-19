@@ -1,6 +1,7 @@
 import actions from '../duck/actions'
 
 const initialState = {
+    id: 7,
     title: '',
     value: ''
 }
@@ -19,6 +20,13 @@ const inputsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 value,
+            }
+        }
+        case actions.SET_INPUT_ID: {
+            const { id } = action;
+            return {
+                ...state,
+                id,
             }
         }
         case actions.RESET_INPUT: {

@@ -7,7 +7,7 @@ class CurrencyContainer extends Component {
         return (
             <div>
                 <h2>EUR/PLN {this.props.currency("PLN")}</h2>
-                <input type={"number"} onChange={ e => this.props.onUpdate(e.target.value) } value={this.props.currency("PLN")}/>
+                <input min={0.01} max={100} step={0.02} type={"number"} onChange={ e => this.props.onUpdate(e.target.value) } value={this.props.currency("PLN")}/>
                 <button onClick={this.props.onReset}>Reset</button>
             </div>
         )

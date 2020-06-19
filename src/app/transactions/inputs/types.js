@@ -1,11 +1,18 @@
 import actions from '../duck/actions'
 
+const setInputId = id => ({
+    type: actions.SET_INPUT_ID,
+    id
+})
+
 const setInputTitle = title => ({
-    type: actions.SET_INPUT_TITLE, title
+    type: actions.SET_INPUT_TITLE,
+    title
 })
 
 const setInputValue = value => ({
-    type: actions.SET_INPUT_VALUE, value
+    type: actions.SET_INPUT_VALUE,
+    value
 })
 
 const resetInputs = () => ({
@@ -13,6 +20,7 @@ const resetInputs = () => ({
 })
 
 export default {
+    setInputId,
     setInputTitle,
     setInputValue,
     resetInputs

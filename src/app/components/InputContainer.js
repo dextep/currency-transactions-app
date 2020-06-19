@@ -5,6 +5,16 @@ import { inputTypes } from '../transactions/inputs/index'
 
 
 class InputContainer extends Component {
+
+    addTransaction = () => {
+        if(this.props.title && this.props.value ) {
+            this.props.addTransaction(this.props.title, this.props.value)
+            this.props.resetInputs()
+        }else{
+            alert("Fill required fields")
+        }
+    }
+
     render () {
         return (
             <div>
@@ -16,12 +26,11 @@ class InputContainer extends Component {
                 />
                 <input
                     type="number"
+                    placeholder="Amount of EUR"
                     value={this.props.value}
                     onChange={ e => this.props.setInputValue(e.target.value) }
                 />
-                <button onClick={ () => {
-                    this.props.addTransaction(this.props)
-                }}>Add Transaction</button>
+                <button onClick={this.addTransaction}>Add Transaction</button>
             </div>
         )
     }
@@ -37,7 +46,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTransaction: (payload) => dispatch(transactionActions.add({title: payload.title, value: payload.value })),
+        addTransaction: (title, value) => dispatch(transactionActions.addTransaction({title: title, value: value})),
         setInputTitle: (title) => dispatch(inputTypes.setInputTitle(title)),
         setInputValue: (value) => dispatch(inputTypes.setInputValue(value)),
         resetInputs: () => dispatch(inputTypes.resetInputs())
