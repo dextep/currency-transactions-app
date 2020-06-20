@@ -7,8 +7,8 @@ class CurrencyContainer extends Component {
         return (
             <div>
                 <h2>EUR/PLN {this.props.currency("PLN")}</h2>
-                <input min={0.01} max={100} step={0.02} type={"number"} onChange={ e => this.props.onUpdate(e.target.value) } value={this.props.currency("PLN")}/>
-                <button onClick={this.props.onReset}>Reset</button>
+                <input min={0.01} max={100} step={0.02} type={"number"} onChange={ e => this.props.updateCurrency(e.target.value) } value={this.props.currency("PLN")}/>
+                <button onClick={this.props.resetCurrency}>Reset</button>
             </div>
         )
     }
@@ -24,8 +24,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onUpdate: (payload) => dispatch(rateActions.update({name:"PLN",value:payload})),
-        onReset: () => dispatch(rateActions.reset())
+        updateCurrency: (payload) => dispatch(rateActions.update({name:"PLN",value:payload})),
+        resetCurrency: () => dispatch(rateActions.reset())
     }
 }
 

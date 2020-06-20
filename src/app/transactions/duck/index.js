@@ -1,4 +1,4 @@
 import transactionsReducer from './reducers'
-export { default as transactionsTypes } from './actions'
-export { default as transactionActions } from './types'
+export { default as transactionsActions } from './actions'
+export { default as transactionsTypes } from './types'
 export default transactionsReducer

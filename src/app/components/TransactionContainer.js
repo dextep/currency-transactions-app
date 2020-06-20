@@ -1,92 +1,104 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {transactionActions} from "../transactions/duck";
-import {inputTypes} from "../transactions/inputs";
+import {transactionsTypes} from "../transactions/duck";
+import { useSelector, useDispatch } from 'react-redux';
+import "./TransactionContainer.css"
 
-class TransactionContainer extends Component {
+export default () => {
+    const dispatch = useDispatch()
 
-    transactionList = transactions => (
-        <ul>
-            {transactions.map( (transaction, index) =>
-                <li key={index}
-                    role={"button"}
-                    onClick={ () => this.transactionClicked(transaction,index)}>
-                        {transaction.title}&nbsp;&nbsp;&nbsp;
-                        {transaction.value} EUR /&nbsp;
-                        {this.exchange(transaction.value, "PLN")} PLN
-                </li>
-            )}
-        </ul>
-    )
+    const transactions = useSelector((state) => state.transactions.transactions)
+    const currency = useSelector((state) =>  state.currency)
 
-    transactionClicked = (transaction, index) => {
-        this.props.setInputId(index)
-        this.props.setInputTitle(transaction.title)
-        this.props.setInputValue(transaction.value)
+    const removeTransaction = (id) => dispatch(transactionsTypes.removeTransaction(id))
+
+    const transactionClicked = (transaction, index) => {
+        // setInputId(index)
+        // setInputTitle(transaction.title)
+        // setInputValue(transaction.value)
     }
 
-    sumValueOfTransactions = () => {
+    const sumValueOfTransactions = () => {
         let sum = 0
-        this.props.transactions.map( (transaction, index) =>
+        transactions.map( (transaction, index) =>
             sum += transaction.value
         )
         return sum;
     }
 
-    maxValueOfTransactions = () => {
-        if(this.props.transactions.length > 0)
-        return this.props.transactions.reduce((a, b) => a.value >= b.value ? a : b);
+    const maxValueOfTransactions = () => {
+        if( transactions.length > 0){
+            return  transactions.reduce((a, b) => a.value >= b.value ? a : b, {value: 0});
+        }
     }
 
-    exchange = (value, currency) => {
-        const currencyValue = this.props.currency.rates
-            .find((rate) => rate.name === currency)
+    const exchange = (value, currencyCode) => {
+        const currencyValue = currency.rates
+            .find((rate) => rate.name === currencyCode)
             .value
         return Number((currencyValue * value).toFixed(2));
     }
 
-    render () {
-
-        if(this.props.transactions.length === 0) {
-            return (
-                <div>
-                    <p>There is no transaction yet. Please add one.</p>
-                </div>
-            )
-        }
-
-        const max = this.maxValueOfTransactions()
+    if(transactions.length === 0) {
         return (
             <div>
-                {this.transactionList(this.props.transactions)}
-                {this.sumValueOfTransactions()} EUR /&nbsp;
-                {this.exchange(this.sumValueOfTransactions(), "PLN")} PLN &nbsp;
-                The highest-value transaction:
-                {max ? `${max.title} ${max.value}` : `none`}
+                <p>There is no transaction yet. Please add one.</p>
             </div>
         )
     }
+
+    const transactionTable = transactions => (
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>EUR</th>
+                    <th>PLN</th>
+                </tr>
+            </thead>
+            <tbody>
+            {transactions.map( (transaction, index) =>
+                <tr key={index}
+                    onClick={ () => transactionClicked(transaction,index)}>
+                    <td>{index}</td>
+                    <td>{transaction.title}</td>
+                    <td>{transaction.value}</td>
+                    <td>{exchange(transaction.value, "PLN")}</td>
+                    <td><button onClick={() => removeTransaction(index)}>DELETE</button></td>
+                </tr>
+            )}
+            </tbody>
+        </table>
+    )
+
+    const max = maxValueOfTransactions
+    return (
+        <div>
+            {transactionTable(transactions)}
+            {sumValueOfTransactions()} EUR /&nbsp;
+            {exchange(sumValueOfTransactions(), "PLN")} PLN &nbsp;
+            The highest-value transaction:
+            {max ? `${max.title} ${max.value}` : `none`}
+        </div>
+    )
+
 }
 
-
-const mapStateToProps = state => {
-    return {
-        transactions:  state.transactions.transactions,
-        currency: state.currency
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        removeTransaction: (id) => dispatch(transactionActions.removeTransaction(id)),
-
-        setInputId: (id) => dispatch(inputTypes.setInputId(id)),
-        setInputTitle: (title) => dispatch(inputTypes.setInputTitle(title)),
-        setInputValue: (value) => dispatch(inputTypes.setInputValue(value))
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TransactionContainer)
+// const mapStateToProps = state => {
+//     return {
+//         transactions:  state.transactions.transactions,
+//         currency: state.currency
+//     }
+// }
+//
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         removeTransaction: (id) => dispatch(transactionsTypes.removeTransaction(id))
+//     }
+// }
+//
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(TransactionContainer)
