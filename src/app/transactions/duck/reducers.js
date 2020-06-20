@@ -13,25 +13,34 @@ const initialState = {
 
 const ratesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.ADD_TRANSACTION:
+        case actions.ADD_TRANSACTION: {
             return {
                 transactions: [
                     ...state.transactions,
                     action.payload
                 ]
-
             }
-        case actions.REMOVE_TRANSACTION:
-            const { index } = action;
+        }
+        case actions.UPDATE_TRANSACTION: {
+            const {index, payload} = action;
+            const transactions = [...state.transactions];
+            transactions[index] = payload;
+            return {
+                transactions,
+            }
+        }
+        case actions.REMOVE_TRANSACTION: {
+            const {index} = action;
             const transactions = [];
             state.transactions.forEach((transaction, i) => {
-                if(index !== i) {
+                if (index !== i) {
                     transactions.push(transaction)
                 }
             })
             return {
                 transactions,
             }
+        }
         default:
             return state
     }

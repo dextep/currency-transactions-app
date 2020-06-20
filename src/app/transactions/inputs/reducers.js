@@ -1,7 +1,7 @@
 import actions from '../duck/actions'
 
 const initialState = {
-    id: 7,
+    id: -1,
     title: '',
     value: ''
 }
