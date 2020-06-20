@@ -31,7 +31,7 @@ class TransactionContainer extends Component {
 
     exchange = (value, currency) => {
         const currencyValue = this.props.currency.rates
-            .find((e) => e.name === currency)
+            .find((rate) => rate.name === currency)
             .value
         return Number((currencyValue * value).toFixed(2));
     }

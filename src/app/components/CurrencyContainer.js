@@ -16,10 +16,9 @@ class CurrencyContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        currency: (currency) => state.currency.rates.map(rate => {
-            if(rate.name === currency)
-                return rate.value
-        })
+        currency: (currency) => state.currency.rates
+            .find((rate) => rate.name === currency)
+            .value
     }
 }
 

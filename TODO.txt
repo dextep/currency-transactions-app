@@ -8,9 +8,9 @@ Lista wymagań
 #	• Usuwanie transakcji z listy
 #	• Suma wszystkich transakcji
 #	• Wyświetlanie osobno, obok listy, transakcji o największej kwocie (nazwa, kwota w PLN, kwota w euro)
-	• Zaokrąglanie wartości do 2 miejsc po przecinku
-	• Wszystkie ww. informacje widoczne jednocześnie na ekranie
-	• Odświeżanie danych na żywo, w momencie modyfikacji
-	• Aplikacja powinna zostać napisana za pomocą ECMAScript 2015 lub nowszego, z użyciem bibliotek React i Redux
-	• Wymagane wsparcie przeglądarek: najnowszy Chrome lub Firefox
+#	• Zaokrąglanie wartości do 2 miejsc po przecinku
+#	• Wszystkie ww. informacje widoczne jednocześnie na ekranie
+#	• Odświeżanie danych na żywo, w momencie modyfikacji
+#	• Aplikacja powinna zostać napisana za pomocą ECMAScript 2015 lub nowszego, z użyciem bibliotek React i Redux
+#	• Wymagane wsparcie przeglądarek: najnowszy Chrome lub Firefox
 	• Pokrycie kodu testami jednostkowymi będzie dodatkowym atutem
