@@ -1,99 +1,74 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { transactionsTypes } from '../transactions/duck/index'
-import { inputTypes } from '../transactions/inputs/index'
+import './InputContainer.css'
 
 export default () => {
     const dispatch = useDispatch()
 
-    const id = useSelector( (state) => state.inputs.id )
-    const title = useSelector( (state) => state.inputs.title )
-    const value = useSelector( (state) => state.inputs.value )
+    const {id, value: transactionValue, title: transactionTitle} =
+        useSelector( (state) => state.transactions.transactions.find(transaction =>
+            transaction.id === state.transactions.selectedId
+        )) || { value: "", title: ""}
 
-    const setInputTitle = (title) => dispatch(inputTypes.setInputTitle(title))
-    const setInputValue = (value) => dispatch(inputTypes.setInputValue(value))
-    const resetInputs = () => dispatch(inputTypes.resetInputs())
+    const [title, setTitle] = useState("");
+    const [value, setValue] = useState("");
 
-    const addTransaction = (title, value) => dispatch(transactionsTypes.addTransaction({title, value}))
-    const updateTransaction = (id, title, value) => dispatch(transactionsTypes.updateTransaction(id, {title, value}))
-    const removeTransaction = (id) => dispatch(transactionsTypes.removeTransaction(id))
+    const addTransaction = () => {
+        if(title && value ) {
+            dispatch(transactionsTypes.addTransaction({title, value}))
+            setTitle("")
+            setValue("")
+        }
+    }
+    const updateTransaction = () => {
+        if(title && value ) {
+            dispatch(transactionsTypes.updateTransaction(id, {title, value}))
+            resetTransaction()
+        }
+    }
+    const resetTransaction = () => {
+        dispatch(transactionsTypes.setSelectedTransaction({id: -1}))
+        setTitle("")
+        setValue("")
+    }
 
     return (
-        <div>
-            <input
-                type="text"
-                placeholder="Transaction Name"
-                value={title}
-                onChange={ e => setInputTitle(e.target.value) }
-            />
-            <input
-                type="number"
-                placeholder="Amount of EUR"
-                value={value}
-                onChange={ e => setInputValue(parseFloat(e.target.value)) }
-            />
-            <button
-                onClick={id === -1 ? addTransaction : updateTransaction}>
-                {id === -1 ? "Add Transaction" : "Update Transaction"}
-            </button>
-            {id !== -1 &&
-                <>
+        <div className={"inputs-container"}>
+            <div className={"inputs-box"}>
+                <h3>Transaction insert:</h3>
+                <input
+                    type="text"
+                    placeholder="Transaction Name"
+                    value={title}
+                    onChange={e =>
+                        setTitle(e.target.value)
+                    }
+                />
+                <input
+                    type="number"
+                    placeholder="Amount of EUR"
+                    min={0} step={0.1}
+                    value={value}
+                    onChange={e =>
+                        setValue(parseFloat(e.target.value) || '')
+                    }
+                />
+                <button
+                    onClick={id ? updateTransaction : addTransaction }>
+                    {id ? "Save" : "Add Transaction"}
+                </button>
+                { id &&
                     <button
-                        onClick={removeTransaction}>
-                        Remove Transaction
-                    </button>
-                    <button
-                        onClick={resetInputs}>
+                        onClick={resetTransaction}
+                        >
                         Cancel
                     </button>
-                </>
-            }
+                }
+            </div>
         </div>
     )
 
 
 
-    // addTransaction = () => {
-    //     if(this.props.title && this.props.value ) {
-    //         this.props.addTransaction(this.props.title, this.props.value)
-    //         this.props.resetInputs()
-    //     }
-    // }
-    //
-    // updateTransaction = () => {
-    //     if(this.props.title && this.props.value ) {
-    //         this.props.updateTransaction(this.props.id, this.props.title, this.props.value)
-    //         this.props.resetInputs()
-    //     }
-    // }
-    //
-    // removeTransaction = () => {
-    //     this.props.removeTransaction(this.props.id)
-    //     this.props.resetInputs()
-    // }
 }
-
-// const mapStateToProps = state => {
-//     return {
-//         id: state.inputs.id,
-//         title: state.inputs.title,
-//         value: state.inputs.value,
-//     }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         addTransaction: (title, value) => dispatch(transactionsTypes.addTransaction({title, value})),
-//         updateTransaction: (id, title, value) => dispatch(transactionsTypes.updateTransaction(id, {title, value})),
-//         removeTransaction: (id) => dispatch(transactionsTypes.removeTransaction(id)),
-//
-//         setInputTitle: (title) => dispatch(inputTypes.setInputTitle(title)),
-//         setInputValue: (value) => dispatch(inputTypes.setInputValue(value)),
-//         resetInputs: () => dispatch(inputTypes.resetInputs())
-//     }
-// }
-//
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(InputContainer)

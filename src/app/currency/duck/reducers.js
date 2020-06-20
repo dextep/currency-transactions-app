@@ -3,7 +3,7 @@ import actions from './actions'
 const initialState = {
     base_currency: "EUR",
     rates: [
-        { name: "PLN", value: 4.4557 }
+        { name: "PLN", value: 4.455 }
     ]
 }
 
@@ -21,7 +21,7 @@ const ratesReducer = (state = initialState, action) => {
             return {
                 base_currency: "EUR",
                 rates: [
-                    { name: "PLN", value: 4.4557 }
+                    { name: "PLN", value: 4.455 }
                 ]
             }
         default:

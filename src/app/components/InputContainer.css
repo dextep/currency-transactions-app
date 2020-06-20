@@ -1,0 +1,21 @@
+.inputs-container {
+    height: 25vh;
+    padding: 4rem 3rem 3rem 3rem;
+    background-color: #f7f7f7;
+}
+.inputs-box{
+    background-color: #5f5f5f;
+    width: 55%;
+    margin: 0 auto;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-radius: 35px;
+    padding: 20px 50px 20px 50px;
+}
+
+h3 {
+    font-size: 16px;
+    font-weight: 100;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+}

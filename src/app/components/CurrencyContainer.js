@@ -1,35 +1,26 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React  from 'react';
+import { useDispatch, useSelector} from 'react-redux';
 import { rateActions } from '../currency/duck/index'
+import './CurrencyContainer.css'
 
-class CurrencyContainer extends Component {
-    render () {
-        return (
-            <div>
-                <h2>EUR/PLN {this.props.currency("PLN")}</h2>
-                <input min={0.01} max={100} step={0.02} type={"number"} onChange={ e => this.props.updateCurrency(e.target.value) } value={this.props.currency("PLN")}/>
-                <button onClick={this.props.resetCurrency}>Reset</button>
+export default () => {
+    const dispatch = useDispatch()
+    const currencyPLN = useSelector((state) => state.currency.rates
+            .find((rate) => rate.name === "PLN")
+            .value)
+
+    const updateCurrency = (payload) => dispatch(rateActions.update({name:"PLN", value:payload}))
+    const resetCurrency = () => dispatch(rateActions.reset())
+
+    return (
+        <div className={"header"}>
+            <div className={"header_text-box"}>
+                <h2>EUR/PLN {currencyPLN}</h2>
             </div>
-        )
-    }
+            <div>
+                <input min={0.001} max={100} step={0.001} type={"number"} onChange={ e => updateCurrency(e.target.value) } value={currencyPLN}/>
+                <button onClick={resetCurrency}>Reset</button>
+            </div>
+        </div>
+    )
 }
-
-const mapStateToProps = state => {
-    return {
-        currency: (currency) => state.currency.rates
-            .find((rate) => rate.name === currency)
-            .value
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        updateCurrency: (payload) => dispatch(rateActions.update({name:"PLN",value:payload})),
-        resetCurrency: () => dispatch(rateActions.reset())
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(CurrencyContainer)

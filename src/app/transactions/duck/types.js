@@ -11,13 +11,19 @@ const updateTransaction = (index, payload) => ({
     payload
 })
 
-const removeTransaction = index => ({
+const removeTransaction = id => ({
     type: actions.REMOVE_TRANSACTION,
-    index
+    id
+})
+
+const setSelectedTransaction = payload => ({
+    type: actions.SET_SELECTED_TRANSACTION,
+    payload
 })
 
 export default {
     addTransaction,
     updateTransaction,
-    removeTransaction
+    removeTransaction,
+    setSelectedTransaction
 }
