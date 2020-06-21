@@ -1,11 +1,12 @@
 .inputs-container {
-    height: 25vh;
     padding: 4rem 3rem 3rem 3rem;
     background-color: #f7f7f7;
 }
 .inputs-box{
+    position:relative;
+    text-align: center;
+    width: fit-content;
     background-color: #5f5f5f;
-    width: 55%;
     margin: 0 auto;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
     border-radius: 35px;
@@ -21,11 +22,13 @@ h3 {
 }
 
 input{
-    font-size: 16px;
+    display: inline-block;
+    font-size: 15px;
     font-family: inherit;
     color: inherit;
     padding: 0.5rem 1rem;
-    width: 300px;
+    width: 30%;
+    height: 35px;
     transition: all .3s;
     border-radius: 35px;
     border: 1.5px solid rgb(227, 227, 227);
@@ -33,4 +36,38 @@ input{
 
 input:focus {
     outline: none;
+}
+
+.first-button {
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    width: 100px ;
+    height: 35px;
+    cursor: pointer;
+    background-image: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgb(255, 255, 255));
+    border: 1.5px solid rgb(227, 227, 227);
+    text-align: center;
+    border-radius: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.first-button:focus {
+    outline: none;
+}
+
+.first-button:active {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.first-button:hover {
+    background-image: linear-gradient(to bottom left, rgba(0, 0, 0, 0.2), rgb(255, 255, 255));
+}
+
+.heading-primary {
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 500;
 }

@@ -37,12 +37,12 @@ export default () => {
         <table className={"transaction-table"}>
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>EUR</th>
-                    <th>PLN</th>
-                    <th></th>
-                    <th></th>
+                    <th style={{width: '50px'}}>#</th>
+                    <th style={{width: '300px'}}>Title</th>
+                    <th style={{width: '170px'}}>EUR</th>
+                    <th style={{width: '170px'}}>PLN</th>
+                    <th style={{width: '120px'}}></th>
+                    <th style={{width: '40px'}}></th>
                 </tr>
             </thead>
             <tbody>
@@ -52,8 +52,8 @@ export default () => {
                     <td>{transaction.title}</td>
                     <td>{transaction.value.toFixed(2)}</td>
                     <td>{exchange(transaction.value, "PLN")}</td>
-                    <td><button onClick={() => transactionClicked(transaction.id)}>EDIT</button></td>
-                    <td><button onClick={() => removeTransaction(transaction.id)}>DELETE</button></td>
+                    <td><button className={'table-button'} onClick={() => transactionClicked(transaction.id)}>EDIT</button></td>
+                    <td><div id="deleteBox" onClick={() => removeTransaction(transaction.id)}><span>X</span></div></td>
                 </tr>
             )}
             </tbody>

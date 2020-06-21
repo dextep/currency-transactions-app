@@ -4,12 +4,12 @@ const initialState = {
     selectedId: -1,
     seq: 7,
     transactions: [
-        { id: 1, title: "Transaction example", value: 107 },
-        { id: 2, title: "Transaction example1", value: 207 },
-        { id: 3, title: "Transaction example8", value: 607 },
-        { id: 4, title: "Transaction example4", value: 307 },
-        { id: 5, title: "Transaction example5", value: 407 },
-        { id: 6, title: "Transaction example6", value: 507 }
+        { id: 1, title: "Expense repayment", value: 100 },
+        { id: 2, title: "Local Council", value: 247 },
+        { id: 3, title: "Electricity bill", value: 20 },
+        { id: 4, title: "T-mobile bill", value: 29 },
+        { id: 5, title: "Grocery Expenses", value: 43.22 },
+        { id: 6, title: "Charity Donation", value: 150 }
     ]
 }
 
