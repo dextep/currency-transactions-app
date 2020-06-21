@@ -19,3 +19,18 @@ h3 {
     text-transform: uppercase;
     padding-bottom: 15px;
 }
+
+input{
+    font-size: 16px;
+    font-family: inherit;
+    color: inherit;
+    padding: 0.5rem 1rem;
+    width: 300px;
+    transition: all .3s;
+    border-radius: 35px;
+    border: 1.5px solid rgb(227, 227, 227);
+}
+
+input:focus {
+    outline: none;
+}

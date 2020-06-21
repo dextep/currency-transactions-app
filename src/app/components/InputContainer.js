@@ -14,6 +14,12 @@ export default () => {
     const [title, setTitle] = useState("");
     const [value, setValue] = useState("");
 
+
+     useEffect(() => {
+         setTitle(transactionTitle);
+         setValue(transactionValue);
+     },[id])
+
     const addTransaction = () => {
         if(title && value ) {
             dispatch(transactionsTypes.addTransaction({title, value}))
@@ -23,7 +29,7 @@ export default () => {
     }
     const updateTransaction = () => {
         if(title && value ) {
-            dispatch(transactionsTypes.updateTransaction(id, {title, value}))
+            dispatch(transactionsTypes.updateTransaction({id, title, value}))
             resetTransaction()
         }
     }
@@ -51,7 +57,12 @@ export default () => {
                     min={0} step={0.1}
                     value={value}
                     onChange={e =>
-                        setValue(parseFloat(e.target.value) || '')
+                        {
+                            // if(Number.isNaN(e.target.value)){
+                            // }
+
+                            setValue(parseFloat(e.target.value) || '')
+                        }
                     }
                 />
                 <button

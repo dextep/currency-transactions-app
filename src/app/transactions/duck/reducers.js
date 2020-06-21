@@ -29,14 +29,12 @@ const ratesReducer = (state = initialState, action) => {
         }
         case actions.UPDATE_TRANSACTION: {
             const {payload} = action;
+            const transactions = [...state.transactions];
+            const index = state.transactions.findIndex( transaction => transaction.id === payload.id)
+            transactions[index] = payload;
             return {
                 ...state,
-                transactions: state.transactions.map( transaction => {
-                    if(transaction.id !== payload.id){
-                        return transaction
-                    }
-                    return payload
-                })
+                transactions
             }
         }
         case actions.REMOVE_TRANSACTION: {
@@ -47,7 +45,7 @@ const ratesReducer = (state = initialState, action) => {
             )
             return {
                 ...state,
-                transactions,
+                transactions
             }
         }
         case actions.SET_SELECTED_TRANSACTION: {

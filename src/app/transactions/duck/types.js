@@ -5,9 +5,8 @@ const addTransaction = payload => ({
     payload
 })
 
-const updateTransaction = (index, payload) => ({
+const updateTransaction = (payload) => ({
     type: actions.UPDATE_TRANSACTION,
-    index,
     payload
 })
 
