@@ -18,7 +18,7 @@ export default () => {
      useEffect(() => {
          setTitle(transactionTitle);
          setValue(transactionValue);
-     },[id])
+     },[id,transactionValue,transactionTitle])
 
     const addTransaction = () => {
         if(title && value ) {
