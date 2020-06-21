@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './App.css';
 import {default as CurrencyContainer} from './app/components/CurrencyContainer'
 import {default as TransactionContainer} from "./app/components/TransactionContainer";
