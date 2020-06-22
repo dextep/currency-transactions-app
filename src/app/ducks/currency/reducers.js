@@ -1,4 +1,4 @@
-import actions from './actions'
+import types from './types'
 
 const initialState = {
     base_currency: "EUR",
@@ -9,7 +9,7 @@ const initialState = {
 
 const ratesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.UPDATE_RATE:
+        case types.UPDATE_RATE:
             return {
                 ...state,
                 rates: state.rates.map(rate => rate.name === action.payload.name ?
@@ -17,7 +17,7 @@ const ratesReducer = (state = initialState, action) => {
                     rate
                 )
             }
-        case actions.RESET_RATES:
+        case types.RESET_RATES:
             return {
                 base_currency: "EUR",
                 rates: [

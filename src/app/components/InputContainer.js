@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { transactionsTypes } from '../transactions/duck/index'
+import { transactionsActions } from '../ducks/transactions'
 import './InputContainer.css'
-import {rateActions} from "../currency/duck";
+import {rateActions} from "../ducks/currency";
 
 export default () => {
     const dispatch = useDispatch()
@@ -26,19 +26,19 @@ export default () => {
 
     const addTransaction = () => {
         if(title && value ) {
-            dispatch(transactionsTypes.addTransaction({title, value}))
+            dispatch(transactionsActions.addTransaction({title, value}))
             setTitle("")
             setValue("")
         }
     }
     const updateTransaction = () => {
         if(title && value ) {
-            dispatch(transactionsTypes.updateTransaction({id, title, value}))
+            dispatch(transactionsActions.updateTransaction({id, title, value}))
             resetTransaction()
         }
     }
     const resetTransaction = () => {
-        dispatch(transactionsTypes.setSelectedTransaction({id: -1}))
+        dispatch(transactionsActions.setSelectedTransaction({id: -1}))
         setTitle("")
         setValue("")
     }

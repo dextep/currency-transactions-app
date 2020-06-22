@@ -1,5 +1,5 @@
 import React  from 'react';
-import {transactionsTypes} from "../transactions/duck";
+import {transactionsActions} from "../ducks/transactions";
 import { useSelector, useDispatch } from 'react-redux';
 import "./TransactionContainer.css"
 
@@ -9,8 +9,8 @@ export default () => {
     const transactions = useSelector((state) => state.transactions.transactions)
     const currency = useSelector((state) =>  state.currency)
 
-    const removeTransaction = (id) => dispatch(transactionsTypes.removeTransaction(id))
-    const transactionClicked = (id) => dispatch(transactionsTypes.setSelectedTransaction({id}))
+    const removeTransaction = (id) => dispatch(transactionsActions.removeTransaction(id))
+    const transactionClicked = (id) => dispatch(transactionsActions.setSelectedTransaction({id}))
 
     const sumValueOfTransactions = () => {
         let sum = 0

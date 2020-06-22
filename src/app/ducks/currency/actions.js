@@ -1,11 +1,11 @@
-import actions from './actions'
+import types from './types'
 
 const update = payload => ({
-    type: actions.UPDATE_RATE, payload
+    type: types.UPDATE_RATE, payload
 })
 
 const reset = () => ({
-    type: actions.RESET_RATES
+    type: types.RESET_RATES
 })
 
 export default {

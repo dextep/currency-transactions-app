@@ -1,4 +1,4 @@
-import actions from './actions'
+import types from './types'
 
 const initialState = {
     selectedId: -1,
@@ -15,7 +15,7 @@ const initialState = {
 
 const ratesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.ADD_TRANSACTION: {
+        case types.ADD_TRANSACTION: {
             const {payload} = action;
             payload["id"] = state.seq;
             state.seq += 1
@@ -27,7 +27,7 @@ const ratesReducer = (state = initialState, action) => {
                 ]
             }
         }
-        case actions.UPDATE_TRANSACTION: {
+        case types.UPDATE_TRANSACTION: {
             const {payload} = action;
             const transactions = [...state.transactions];
             const index = state.transactions.findIndex( transaction => transaction.id === payload.id)
@@ -37,7 +37,7 @@ const ratesReducer = (state = initialState, action) => {
                 transactions
             }
         }
-        case actions.REMOVE_TRANSACTION: {
+        case types.REMOVE_TRANSACTION: {
             const {id} = action;
             const transactions = [];
             state.transactions.map(transaction => transaction.id !== id &&
@@ -48,7 +48,7 @@ const ratesReducer = (state = initialState, action) => {
                 transactions
             }
         }
-        case actions.SET_SELECTED_TRANSACTION: {
+        case types.SET_SELECTED_TRANSACTION: {
             const {id} = action.payload;
             return {
                 ...state,

@@ -1,22 +1,22 @@
-import actions from './actions'
+import types from './types'
 
 const addTransaction = payload => ({
-    type: actions.ADD_TRANSACTION,
+    type: types.ADD_TRANSACTION,
     payload
 })
 
 const updateTransaction = (payload) => ({
-    type: actions.UPDATE_TRANSACTION,
+    type: types.UPDATE_TRANSACTION,
     payload
 })
 
 const removeTransaction = id => ({
-    type: actions.REMOVE_TRANSACTION,
+    type: types.REMOVE_TRANSACTION,
     id
 })
 
 const setSelectedTransaction = payload => ({
-    type: actions.SET_SELECTED_TRANSACTION,
+    type: types.SET_SELECTED_TRANSACTION,
     payload
 })
 
