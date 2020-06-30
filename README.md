@@ -21,7 +21,7 @@ Project is creating with:
 
 # Feature list
 
-  * Display and and define a currency converter (1 EURO = x PLN)
+  * Display and and define a currency converter EUR/PLN
   * Adding a currency transaction: defined name and amount in euros
   * List of added currency transactions: lists of previously added transactions (name, amount in EUR, automatically calculated amount in PLN)
   * Automatic conversion of amounts in PLN for previously added transactions after changing the currency converter
